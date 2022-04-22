@@ -1,0 +1,1 @@
+farenheit.o: ../farenheit.c

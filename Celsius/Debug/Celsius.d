@@ -1,0 +1,1 @@
+Celsius.o: ../Celsius.c
