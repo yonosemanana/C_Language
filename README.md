@@ -1,2 +1,2 @@
 # C_Language
-My exercises from "C programming language" book
+This repository contains examples and my exercises from "C Programming Language" book by Brian Kernigan and Dennis Ritchie.
