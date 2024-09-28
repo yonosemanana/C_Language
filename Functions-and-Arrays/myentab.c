@@ -13,7 +13,7 @@ int main(void) {
 
 	len = getstr(line, MAXLENGTH);
 	while (len > 0) {
-		printf("%d\n", len);
+		// printf("%d\n", len);
 		entablen = entab(line, entabline);
 		for (int i = 0; i < entablen; ++i)
 			printf("%c", entabline[i]);
@@ -24,24 +24,33 @@ int main(void) {
 }
 
 int entab(char spaceline[], char tabline[]) {
-	int i = 0;
-	int j = 0;
-	int k, n, spaces;
+	int i = 0; // Array counter for spaceline[]
+	int j = 0; // Array counter for tabline[]
+	int spaces = 0; // Number of consequitive spaces before the next tab stop
+	int k, n;
 	while (spaceline[i] != '\0') {
 		
 		if (spaceline[i] != ' ') {
+			if (spaces > 0) 
+				for (k = 0; k < spaces; ++k) 
+					tabline[j+k] = '#';
+				j = j + spaces;
+			spaces = 0;
 			tabline[j] = spaceline[i];
 			++i;
 			++j;
-			spaces = 0;
 		}
 		else {
 			spaces += 1;
-
-			if (spaces > 1 && i % TAB == 0)
-				tabline[j] = '\t';
+			if ((i+1) % TAB == 0) {
+				if (spaces > 1) 
+					tabline[j] = '\t';
+				else 
+					tabline[j] = '#';
+				++j;
+				spaces = 0;
+			}
 			++i;
-			++j;
 		}
 
 	}
