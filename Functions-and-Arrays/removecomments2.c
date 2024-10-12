@@ -48,34 +48,36 @@ void removecomments(char *filename_in, char *filename_out) {
 
 		while ( s[i] != '\0') {
 
-
-			if (s[i] = '"' && !(quote_str) ) {
+			if (s[i] == '"' && !(quote_str) && (s[i-1] != '\\') && !(sl_comm || ml_comm) ) {
 				if ( !(dquote_str) ) {
 					dquote_str = TRUE; // Opening \" of string
-					++i;
 				}
 
 				else {
 					dquote_str = FALSE; // Closing \" of string
-					++i;
 				}
+				// Normal text of C program. Then write it to output string
+				out_s[j] = s[i];
+				++j;
+				++i;
 				
 			}
 
-			else if (s[i] = '\'' && !(dquote_str) ) {
+			else if (s[i] == '\'' && !(dquote_str) && (s[i-1] != '\\') && !(sl_comm || ml_comm) ) {
 				if ( !(quote_str) ) {
 					quote_str = TRUE; // Opening \' of string
-					++i;
 				}
 				
 				else {
 					quote_str = FALSE; // Closing \' of string
-					++i;
 				}
+				// Normal text of C program. Then write it to output string
+				out_s[j] = s[i];
+				++j;
+				++i;
 			}
 
 			else if ( !(quote_str || dquote_str) ) {
-
 
 				// printf("%c", s[i]);
 	
@@ -114,7 +116,13 @@ void removecomments(char *filename_in, char *filename_out) {
 				}
 
 			}
-	
+			else {
+				// Normal text of C program. Then write it to output string
+				out_s[j] = s[i];
+				++j;
+				++i;
+			}
+
 		}
 			// Adding \0 to the end of output string
 		out_s[j] = '\0'; /* This is test 
