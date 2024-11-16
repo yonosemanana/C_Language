@@ -1,0 +1,1 @@
+void pbin(unsigned x);
