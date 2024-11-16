@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <assert.h>
+
+void main(void) {
+	
+	char ex1[] = "0x12 & 0x30";
+	char ex2[] = "0xab | 0x7b";
+	char ex3[] = "0x34 ^ 0x99";
+	char ex4[] = "0x0012 << 2";
+	char ex5[] = "0x347F >> 6";
+	char ex6[] = "~0xA0";
+
+	printf("%s = 0x%04x\n", ex1, 0x12 & 0x30);
+	printf("%s = 0x%04x\n", ex2, 0xab | 0x7b);
+	printf("%s = 0x%04x\n", ex3, 0x34 ^ 0x99);
+	printf("%s = 0x%04x\n", ex4, 0x12 << 2);
+	printf("%s = 0x%04x\n", ex5, 0x347F >> 6);
+	printf("%s = 0x%04x\n", ex6, ~0xA0 & 0xFF);
+
+}
