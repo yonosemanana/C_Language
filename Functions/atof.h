@@ -1,0 +1,1 @@
+double myatof(char s[]);
