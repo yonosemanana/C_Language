@@ -74,6 +74,10 @@ int main(void) {
 			push(op1);
 			break;
 		case 's':	/* swap top two stack elements */
+			op2 = pop();
+			op1 = pop();
+			push(op2);
+			push(op1);
 			break;
 		case 'c':	/* clear stack */
 			break;
