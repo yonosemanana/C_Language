@@ -80,6 +80,8 @@ int main(void) {
 			push(op1);
 			break;
 		case 'c':	/* clear stack */
+			while (sp > 0)
+				pop();
 			break;
 		
 		default:

@@ -1,3 +1,4 @@
+extern int sp;
 
 void push(double);
 
