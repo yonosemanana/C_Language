@@ -1,29 +1,57 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
 #include "getch.h"
+
 #define NUMBER  '0'     /* signal that a number was found */
 
 int getch(void);
 void ungetch(int);
 
-/* getop: get next operator or numberic operand */
+/* getop: get next operator or numberic operand or calculator's command */
 int getop(char s[]) {
 	int i, c, c2;
 
-	while ((s[0] = c = getch()) == ' ' || c == '\t')
+	/* skip leading whitespaces */
+	while ((c = getch()) == ' ' || c == '\t')
 		;
-
-	s[1] = '\0';
-	if (!isdigit(c) && c != '.' && c != '-')
-		return c;	/* not a number */
-
 	i = 0;
+	s[0] = c;
+	s[1] = '\0';
+
+	/* not a number */
+	if (!isdigit(c) && c != '.' && c != '-') {
+		if (c == EOF || c == '\n')
+			return c;
+
+		while(isalnum(s[++i] = c = getch())) 
+			;
+		s[i] = '\0';
+		// printf("s = %s\n", s);
+		
+		if (strcmp(s, "+") == 0)
+			return '+';
+		if (strcmp(s, "*") == 0)
+		    	return '*';
+		if (strcmp(s, "-") == 0)
+			return '-';
+		if (strcmp(s, "/") == 0)
+		       return '/';	
+		if (strcmp(s, "print") == 0)
+			return 'p';
+		if (strcmp(s, "dup") == 0)
+			return 'd';
+		if (strcmp(s, "swap") == 0)
+			return 's';
+		if (strcmp(s, "clear") == 0)
+			return 'c';
+	}
+
+	/* number (or "-" operator) */
 	c2 = getch();
 	ungetch(c2);
 	if (c == '-' && !isdigit(c2) && c2 != '.')
 		return c;	/* operator "-", not a negative number */
-	else 
-		s[i] = c;
 
 	if (isdigit(c) || c == '-') /* collect integer part */
 		while (isdigit(s[++i] = c = getch()))
@@ -35,6 +63,5 @@ int getop(char s[]) {
 	if (c != EOF)
 		ungetch(c);
 	
-	// printf("s = %s\n", s);
 	return NUMBER;
 }

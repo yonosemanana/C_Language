@@ -17,6 +17,10 @@ int main(void) {
 	char s[MAXOP];
 
 	while ((type = getop(s)) != EOF ) {
+		
+		// printf("type = %c\n", type);
+		// printf("s = %s\n", s);
+		
 		switch(type) {
 		case NUMBER:
 			push(atof(s));
@@ -59,6 +63,21 @@ int main(void) {
 			}
 			push(n1 % n2);
 			break;
+		case 'p':	/* print top of stack without popping */
+			op1 = pop();
+			push(op1);
+			printf("\t%.8g\n", op1);
+			break;
+		case 'd':	/* duplicate top of stack */
+			op1 = pop();
+			push(op1);
+			push(op1);
+			break;
+		case 's':	/* swap top two stack elements */
+			break;
+		case 'c':	/* clear stack */
+			break;
+		
 		default:
 			printf("Error: unknown command %s\n", s);
 			break;
