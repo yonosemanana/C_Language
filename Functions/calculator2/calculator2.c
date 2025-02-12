@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>	/* for atof() */
+#include <math.h>
 
 #include "stack.h"
 #include "getop.h"
@@ -17,9 +18,6 @@ int main(void) {
 	char s[MAXOP];
 
 	while ((type = getop(s)) != EOF ) {
-		
-		// printf("type = %c\n", type);
-		// printf("s = %s\n", s);
 		
 		switch(type) {
 		case NUMBER:
@@ -83,9 +81,21 @@ int main(void) {
 			while (sp > 0)
 				pop();
 			break;
-		
+		case 'S':	/* sin(x) */
+			push(sin(pop()));
+			break;
+		case 'C':	/* cos(x) */
+			push(cos(pop()));
+			break;
+		case 'E':	/* exp(x) */
+			push(exp(pop()));
+			break;
+		case 'P':	/* pow(x, y) */
+			op2 = pop();
+			push(pow(pop(), op2));
+			break;	
 		default:
-			printf("Error: unknown command %s\n", s);
+			printf("Error: unknown command %s !\n", s);
 			break;
 		}
 	}

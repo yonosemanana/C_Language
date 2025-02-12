@@ -1,10 +1,10 @@
 default: calculator2
 
 calculator2: calculator2.o stack.o getop.o
-	gcc calculator2.o stack.o getop.o getch.o -o calculator2
+	gcc calculator2.o stack.o getop.o getch.o -o calculator2 -lm
 
 calculator2.o: calculator2.c
-	gcc -c calculator2.c -o calculator2.o
+	gcc -c calculator2.c -o calculator2.o 
 
 stack.o: stack.c
 	gcc -c stack.c -o stack.o

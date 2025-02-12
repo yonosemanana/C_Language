@@ -45,6 +45,14 @@ int getop(char s[]) {
 			return 's';
 		if (strcmp(s, "clear") == 0)
 			return 'c';
+		if (strcmp(s, "sin") == 0)
+			return 'S';
+		if (strcmp(s, "cos") == 0)
+			return 'C';
+		if (strcmp(s, "exp") == 0)
+			return 'E';
+		if (strcmp(s, "pow") == 0)
+			return 'P';
 	}
 
 	/* number (or "-" operator) */
