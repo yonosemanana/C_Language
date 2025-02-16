@@ -94,7 +94,7 @@ int main(void) {
 			op2 = pop();
 			push(pow(pop(), op2));
 			break;	
-		default:
+		case 27:
 			printf("Error: unknown command %s !\n", s);
 			break;
 		}

@@ -16,3 +16,9 @@ void ungetch(int c) {
 	else
 		printf("Error: too many characters in ungetch buffer!\n");
 }
+
+/* push string back on input */
+void ungets(char s[]) {
+	for (int i = 0; s[i] != '\0'; i++)
+		ungetch(s[i]);
+}
