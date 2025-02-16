@@ -53,6 +53,10 @@ int getop(char s[]) {
 			return 'E';
 		if (strcmp(s, "pow") == 0)
 			return 'P';
+		
+		/* Error: unknown command */
+		return 27; // ASCII code of ESC key 
+
 	}
 
 	/* number (or "-" operator) */
