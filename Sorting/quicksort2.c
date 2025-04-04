@@ -15,14 +15,9 @@ void quicksort(double arr[], int left, int right) {
 	 * is less than any element from the right part. */
 	int sep_index;
 	double sep_value;
-	sep_index = (left + right) / 2; // sep_index can be arbitrary
+	sep_index = left; // sep_index can be arbitrary
 	sep_value = arr[sep_index];
 
-	/* Moving sep_value to the leftmost element of array to start sorting
-	 *  array into two part, when (left) < (right) */
-	swap(arr, left, sep_index);
-	sep_index = left;
-	
 	for (int i = left + 1; i <= right; i++) {
 		if (arr[i] < sep_value) {
 			swap(arr, i, sep_index + 1);
